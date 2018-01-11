@@ -1,0 +1,61 @@
+html, body {
+  -webkit-app-region: no-drag;
+}
+
+.buttons {
+  -webkit-app-region: no-drag;
+}
+
+.nav-buttons, .menu-buttons {
+  -webkit-app-region: no-drag;
+}
+
+.nav-buttons {
+  position: absolute;
+  left:30px;
+  padding-top: 7px;
+  left: 0px;
+  background-color: #232323;
+  height: 55px;
+  width: 150px;
+  text-align: center;
+}
+
+.menu-buttons {
+  position: absolute;
+  padding-top: 4px;
+  padding-right:15px;
+  right: 0px;
+  height: 55px;
+  width: 150px;
+  background-color: #232323;
+  text-align: center;
+}
+
+.button-back {
+  height: 36px;
+  width: 36px;
+  margin-right: 25px;
+}
+
+.button-forward {
+  height: 36px;
+  width: 36px;
+}
+.button-hide {
+  position: relative;
+  height: 48px;
+  width: 48px;
+  padding-right: 33px;
+  padding-left: 17px;
+}
+.button-close {
+  position: relative;
+  height: 48px;
+  width: 48px;
+  right: 0px;
+}
+
+::-webkit-scrollbar {
+    display: none;
+  }
