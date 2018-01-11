@@ -1,5 +1,5 @@
 # desktop-youtube
-A project I built for myself to have youtube run as a desktop app in the corner of my screen, allowing me to watch youtube videos straight from my desktop, running as a widget.
+A project I built for myself to have youtube run as a desktop app in the corner of my screen, allowing me to watch youtube videos straight from my desktop, running as a widget. In this very initial version, I have built it specifically for my screen size and resolution, so it is not yet intended to be used for others, as positioning of elements will be bad and sporadic on other machines.
 
 
 # How to setup
