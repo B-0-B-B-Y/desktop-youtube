@@ -6,7 +6,7 @@ A project I built for myself to have youtube run as a desktop app in the corner 
 
 1) Open a terminal
 2) Navigate to the directory of your choice where you want to clone this project to
-3) Run the command "*git clone https://github.com/B-0-B-B-Y/desktop-youtube.git*"
+3) Run the command *git clone https://github.com/B-0-B-B-Y/desktop-youtube.git*
 4) Then run *cd desktop-youtube*
 5) Run *ls* and verify that you can see a file called **main.js**
 2) Whilst in the same directory where the main.js file is located, please run from terminal *npm install electron --save-dev*
