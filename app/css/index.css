@@ -36,11 +36,13 @@ html, body {
   height: 36px;
   width: 36px;
   margin-right: 25px;
+  cursor: pointer;
 }
 
 .button-forward {
   height: 36px;
   width: 36px;
+  cursor: pointer;
 }
 .button-hide {
   position: relative;
@@ -48,12 +50,14 @@ html, body {
   width: 48px;
   padding-right: 33px;
   padding-left: 17px;
+  cursor: pointer;
 }
 .button-close {
   position: relative;
   height: 48px;
   width: 48px;
   right: 0px;
+  cursor: pointer;
 }
 
 ::-webkit-scrollbar {
