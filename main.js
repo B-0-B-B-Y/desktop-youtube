@@ -1,4 +1,4 @@
-const {app, BrowserWindow} = require('electron')
+const {app, BrowserWindow, ipcMain} = require('electron')
 const path = require('path')
 const url = require('url')
 const fs = require('fs')
@@ -31,7 +31,6 @@ app.on('ready', function() {
       youtubeWindow.show()
     })
 
-
     controlWindow = new BrowserWindow({
         parent: youtubeWindow,
         height: 64,
@@ -44,10 +43,26 @@ app.on('ready', function() {
 
     controlWindow.loadURL('file://' + __dirname + '/app/index.html');
 
-
 });
 
 if (process.platform === 'linux') {
     app.commandLine.appendSwitch('enable-transparent-visuals');
     app.commandLine.appendSwitch('disable-gpu');
 }
+
+ipcMain.on('button-press-back', (event, arg) => {
+  youtubeWindow.webContents.goBack()
+})
+
+ipcMain.on('button-press-forward', (event, arg) => {
+  youtubeWindow.webContents.goForward()
+})
+
+ipcMain.on('button-press-hide', (event, arg) => {
+  youtubeWindow.minimize()
+  controlWindow.minimize()
+})
+
+ipcMain.on('button-press-close', (event, arg) => {
+  app.quit()
+})
