@@ -1,29 +1,34 @@
+const { ipcRenderer } = require('electron');
+var backButton = document.getElementsByClassName('button-back')[0];
+var forwardButton = document.getElementsByClassName('button-forward')[0];
+var hideButton = document.getElementsByClassName('button-hide')[0];
+var closeButton = document.getElementsByClassName('button-close')[0];
 
-var backButton = document.querySelectorAll('.button-back');
-var forwardButton = document.querySelectorAll('.button-forward');
-var hideButton = document.querySelectorAll('.button-hide');
-var closeButton = document.querySelectorAll('.button-close');
-
-function setupBackButton(backButton) {
-  backButton.addEventListener('click', function () {
-    youtubeWindow.webContents.goBack()
+function setupBackButton(b) {
+  b.addEventListener('click', function () {
+    ipcRenderer.send('button-press-back', 'Go back to previous page')
   })
 }
 
-function setupBackButton(forwardButton) {
-  backButton.addEventListener('click', function () {
-
+function setupForwardButton(b) {
+  b.addEventListener('click', function () {
+    ipcRenderer.send('button-press-forward', 'Go forward to most recent page')
   })
 }
 
-function setupBackButton(hideButton) {
-  backButton.addEventListener('click', function () {
-
+function setupHideButton(b) {
+  b.addEventListener('click', function () {
+    ipcRenderer.send('button-press-hide', 'Hide the app')
   })
 }
 
-function setupBackButton(closeButton) {
-  backButton.addEventListener('click', function () {
-
+function setupCloseButton(b) {
+  b.addEventListener('click', function () {
+    ipcRenderer.send('button-press-close', 'Close the app')
   })
 }
+
+setupBackButton(backButton)
+setupForwardButton(forwardButton)
+setupHideButton(hideButton)
+setupCloseButton(closeButton)
