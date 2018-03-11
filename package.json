@@ -1,46 +1,57 @@
 {
-    "name": "desktop-youtube",
-    "version": "1.0.0",
-    "author": "Bob Naydenov <bob.naydenov@hotmail.com>",
-    "description": "An elegant desktop version of YouTube",
-    "licence": "GPL-3.0",
-    "keywords": ["desktop", "app", "youtube", "videos", "games", "entertainment", "live", "music", "livestream", "comments", "share"],
-    "main": "./main.js",
-    "repository": {
-      "type": "git",
-      "url": "https://github.com/B-0-B-B-Y/desktop-youtube.git"
+  "name": "desktop-youtube",
+  "version": "1.0.0",
+  "author": "Bob Naydenov <bob.naydenov@hotmail.com>",
+  "description": "An elegant desktop version of YouTube",
+  "licence": "GPL-3.0",
+  "keywords": [
+    "desktop",
+    "app",
+    "youtube",
+    "videos",
+    "games",
+    "entertainment",
+    "live",
+    "music",
+    "livestream",
+    "comments",
+    "share"
+  ],
+  "main": "./main.js",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/B-0-B-B-Y/desktop-youtube.git"
+  },
+  "build": {
+    "appId": "desktop.youtube",
+    "productName": "YouTube Desktop",
+    "mac": {
+      "category": "Entertainment",
+      "icon": "app/build/icon.icns"
     },
-    "build": {
-      "appId": "desktop.youtube",
-      "productName": "YouTube Desktop",
-      "mac": {
-        "category": "Entertainment",
-        "icon": "app/build/icon.icns"
-      },
-      "win": {
-        "target": "NSIS",
-        "icon": "app/build/icon.ico"
-      },
-      "linux": {
-        "icon": "app/build/"
-      }
+    "win": {
+      "target": "NSIS",
+      "icon": "app/build/icon.ico"
     },
-    "scripts": {
-        "start": "electron .",
-        "pack": "electron-builder -mlw",
-        "dist-win": "electron-builder --win",
-        "postinstall": "electron-builder install-app-deps"
-    },
-    "devDependencies": {
-        "electron": "^1.8.3",
-        "electron-ad-blocker": "^0.2.0",
-        "electron-builder": "^19.56.2",
-        "electron-packager": "^10.1.1",
-        "electron-prebuilt": "^1.4.13",
-        "video-fullscreen": "^1.0.1"
-    },
-    "dependencies": {
-        "electron-ad-blocker": "^0.2.0",
-        "video-fullscreen": "^1.0.1"
+    "linux": {
+      "icon": "app/build/"
     }
+  },
+  "scripts": {
+    "start": "electron .",
+    "pack": "electron-builder -mlw",
+    "dist-win": "electron-builder --win",
+    "postinstall": "electron-builder install-app-deps"
+  },
+  "devDependencies": {
+    "electron": "^1.8.3",
+    "electron-ad-blocker": "^0.2.0",
+    "electron-builder": "^19.56.2",
+    "electron-prebuilt": "^1.4.13",
+    "video-fullscreen": "^1.0.1"
+  },
+  "dependencies": {
+    "electron-ad-blocker": "^0.2.0",
+    "video-fullscreen": "^1.0.1"
+  }
 }
