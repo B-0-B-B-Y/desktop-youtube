@@ -3,21 +3,25 @@
 <html lang="en">
 <head>
   <meta charset="utf-8">
-  <meta name="author" content="fs0ciety">
   <link rel="stylesheet" href="css/index.css">
 </head>
 
 <body>
-  <div class="buttons">
-    <div class="nav-buttons">
-      <img class="button-back" src="assets/img/buttons/back.png" />
-      <img class="button-forward" src="assets/img/buttons/forward.png" />
-    </div>
-    <div class="menu-buttons">
-      <img class="button-hide" src="assets/img/buttons/hide.png" />
-      <img class="button-close" src="assets/img/buttons/close.png" />
+  <div class="menu-bar" id="menu">
+    <div class="buttons">
+        <img class="button-back" draggable="false" src="assets/img/buttons/back.png" />
+        <img class="button-forward" draggable="false" src="assets/img/buttons/forward.png" />
+        <div class="right">
+          <img class="button-hide" draggable="false" src="assets/img/buttons/hide.png" />
+          <img class="button-close" draggable="false" src="assets/img/buttons/close.png" />
+        </div>
     </div>
   </div>
-  <script src="js/index.js"></script>
+
+  <div id="player">
+    <webview id="webview" src="https://www.youtube.com"></webview>
+  </div>
+
+  <script src="js/index.js" type="text/javascript"></script>
 </body>
 </html>

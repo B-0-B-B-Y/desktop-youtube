@@ -1,66 +1,50 @@
+const electron = require('electron')
 const {app, BrowserWindow, ipcMain} = require('electron')
+const { blockWindowAds, adBlocker } = require('electron-ad-blocker')
 const path = require('path')
 const url = require('url')
 const fs = require('fs')
 
 let youtubeWindow = null;
-let controlWindow = null;
 
 app.on('ready', function() {
 
+  const {width, height} = electron.screen.getPrimaryDisplay().workAreaSize
+
     youtubeWindow = new BrowserWindow({
-        height: 630,
-        width: 1040,
+        //height: 630,
+        //width: 1150,
+        height: height * 0.50,
+        width: width * 0.45,
         frame: false,
         transparent: false,
-        x: 1500,
-        y: 800,
-    });
-
-    youtubeWindow.loadURL('https://www.youtube.com');
-    youtubeWindow.webContents.on('did-finish-load', function() {
-      fs.readFile(__dirname+ '/app/css/index.css', "utf-8", function(error, data) {
-        if(!error){
-            var formatedData = data.replace(/\s{2,10}/g, ' ').trim()
-            youtubeWindow.webContents.insertCSS(formatedData)
-        }
-      })
+        //x: 1400,
+        //y: 760,
+        x: width * 0.6,
+        y: height * 0.5,
+        icon: path.join(__dirname, 'build/512x512.png'),
+        alwaysOnTop: true
     })
 
-    youtubeWindow.once('ready-to-show', () => {
-      youtubeWindow.show()
-    })
+    youtubeWindow.loadURL('file://' + __dirname + '/app/index.html');
 
-    controlWindow = new BrowserWindow({
-        parent: youtubeWindow,
-        height: 64,
-        width: 1040,
-        frame: false,
-        transparent: true,
-        x: 1500,
-        y: 740
-    });
+    const options = {
+      verbose: false,
+      logger: console,
+    }
 
-    controlWindow.loadURL('file://' + __dirname + '/app/index.html');
+    blockWindowAds(youtubeWindow, options);
 
-});
+
+})
 
 if (process.platform === 'linux') {
     app.commandLine.appendSwitch('enable-transparent-visuals');
     app.commandLine.appendSwitch('disable-gpu');
 }
 
-ipcMain.on('button-press-back', (event, arg) => {
-  youtubeWindow.webContents.goBack()
-})
-
-ipcMain.on('button-press-forward', (event, arg) => {
-  youtubeWindow.webContents.goForward()
-})
-
 ipcMain.on('button-press-hide', (event, arg) => {
   youtubeWindow.minimize()
-  controlWindow.minimize()
 })
 
 ipcMain.on('button-press-close', (event, arg) => {

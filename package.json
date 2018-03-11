@@ -1,13 +1,35 @@
 {
     "name": "desktop-youtube",
-    "version": "0.1.0",
+    "version": "1.0.0",
+    "author": "Bob Naydenov <bob.naydenov@hotmail.com>",
+    "description": "An elegant desktop version of YouTube",
+    "licence": "GPL-3.0",
+    "keywords": ["desktop", "app", "youtube", "videos", "games", "entertainment", "live", "music", "livestream", "comments", "share"],
     "main": "./main.js",
+    "build": {
+        "mac": {
+            "icon": "build/icon.icns",
+            "category": "Entertainment"
+        },
+        "linux": {
+            "icon": "build/",
+        }
+    },
     "scripts": {
-        "start": "electron ."
+        "start": "electron .",
+        "dist": "electron-builder dist",
+        "postinstall": "electron-builder install-app-deps"
     },
     "devDependencies": {
-        "electron": "^1.7.10",
+        "electron": "^1.8.3",
+        "electron-ad-blocker": "^0.2.0",
+        "electron-builder": "^19.56.2",
+        "electron-packager": "^10.1.1",
         "electron-prebuilt": "^1.4.13",
-        "electron-rebuild": "^1.6.0"
+        "video-fullscreen": "^1.0.1"
+    },
+    "dependencies": {
+        "electron-ad-blocker": "^0.2.0",
+        "video-fullscreen": "^1.0.1"
     }
 }
