@@ -1,5 +1,6 @@
-# desktop-youtube
-A project I built for myself to have youtube run as a desktop app in the corner of my screen, allowing me to watch youtube videos straight from my desktop, running as a widget. In this very initial version, I have built it specifically for my screen size and resolution, so it is not yet intended to be used for others, as positioning of elements will be bad and sporadic on other machines.
+# YouTube Desktop
+
+<h3> I wanted to create a beautiful, slick, desktop widget for YouTube, allowing me to enjoy my favourite content whilst working on projects, and have the two workspaces visible side by side right on my desktop. The client comes with ad-blocker built in, and presents you with the full functionality of the web equivalent site. Watch, Comment, Subscribe, Upload and Share content, right from your desktop. </h3> 
 
 
 # How to setup
