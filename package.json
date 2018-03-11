@@ -12,8 +12,9 @@
     },
     "build": {
       "appId": "desktop.youtube",
+      "productName": "YouTube Desktop",
       "mac": {
-        "category": "Games",
+        "category": "Entertainment",
         "icon": "app/build/icon.icns"
       },
       "win": {
@@ -26,8 +27,7 @@
     },
     "scripts": {
         "start": "electron .",
-        "pack": "electron-builder --dir",
-        "dist": "electron-builder",
+        "pack": "electron-builder -mlw",
         "dist-win": "electron-builder --win",
         "postinstall": "electron-builder install-app-deps"
     },
