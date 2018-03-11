@@ -6,13 +6,17 @@
     "licence": "GPL-3.0",
     "keywords": ["desktop", "app", "youtube", "videos", "games", "entertainment", "live", "music", "livestream", "comments", "share"],
     "main": "./main.js",
+    "repository": {
+      "type": "git",
+      "url": "https://github.com/B-0-B-B-Y/desktop-youtube.git"
+    },
     "build": {
         "mac": {
             "icon": "build/icon.icns",
             "category": "Entertainment"
         },
         "linux": {
-            "icon": "build/",
+            "icon": "build/"
         }
     },
     "scripts": {
