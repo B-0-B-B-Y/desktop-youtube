@@ -22,7 +22,7 @@ app.on('ready', function() {
         //y: 760,
         x: width * 0.6,
         y: height * 0.5,
-        icon: path.join(__dirname, 'build/icon.png'),
+        icon: path.join(__dirname, 'app/build/icon.png'),
         alwaysOnTop: true
     })
 
