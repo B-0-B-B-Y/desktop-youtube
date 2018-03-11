@@ -11,17 +11,24 @@
       "url": "https://github.com/B-0-B-B-Y/desktop-youtube.git"
     },
     "build": {
-        "mac": {
-            "icon": "build/icon.icns",
-            "category": "Entertainment"
-        },
-        "linux": {
-            "icon": "build/"
-        }
+      "appId": "desktop.youtube",
+      "mac": {
+        "category": "Games",
+        "icon": "app/build/icon.icns"
+      },
+      "win": {
+        "target": "NSIS",
+        "icon": "app/build/icon.ico"
+      },
+      "linux": {
+        "icon": "app/build/"
+      }
     },
     "scripts": {
         "start": "electron .",
-        "dist": "electron-builder dist",
+        "pack": "electron-builder --dir",
+        "dist": "electron-builder",
+        "dist-win": "electron-builder --win",
         "postinstall": "electron-builder install-app-deps"
     },
     "devDependencies": {
