@@ -9,7 +9,7 @@ let youtubeWindow = null;
 
 app.on('ready', function() {
 
-  const {width, height} = electron.screen.getPrimaryDisplay().workAreaSize
+  const {width, height} = electron.screen.getPrimaryDisplay().size
 
     youtubeWindow = new BrowserWindow({
         //height: 630,
