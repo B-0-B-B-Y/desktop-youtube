@@ -48,17 +48,18 @@ html, body {
   -webkit-app-region: no-drag;
 }
 .button-hide {
-  height: 42px;
-  width: 42px;
+  height: 48px;
+  width: 48px;
   padding: 5px 5px;
   margin: 6px 0;
   cursor: pointer;
   -webkit-app-region: no-drag;
 }
 .button-close {workAreaSize
-  height: 42px;
+  height: 48px;
   width: 42px;
-  padding: 5px 5px;
+  padding: 0px 5px;
+  padding-top: 7px;
   margin: 6px 0;
   cursor: pointer;
   -webkit-app-region: no-drag;
@@ -78,5 +79,5 @@ html, body {
   flex: row nowrap;
   justify-content: center;
   width: 100%;
-  height: calc(100% - 60px);
+  height: 100%;
 }
