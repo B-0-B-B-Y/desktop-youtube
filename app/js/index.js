@@ -42,7 +42,7 @@ webview.addEventListener('enter-html-full-screen', function () {
 
 webview.addEventListener('leave-html-full-screen', function () {
   document.getElementById("menu").style.display = "flex"
-  document.getElementById("player").height = "740px"
+  document.getElementById("player").height = "calc(100% - 60px)"
   document.getElementById("player").width = "100%"
   document.getElementById("player").style.position = "relative"
 })
