@@ -38,11 +38,6 @@ app.on('ready', function() {
 
 })
 
-if (process.platform === 'linux') {
-    app.commandLine.appendSwitch('enable-transparent-visuals');
-    app.commandLine.appendSwitch('disable-gpu');
-}
-
 ipcMain.on('button-press-hide', (event, arg) => {
   youtubeWindow.minimize()
 })
