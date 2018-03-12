@@ -44,7 +44,7 @@
     "postinstall": "electron-builder install-app-deps"
   },
   "devDependencies": {
-    "electron": "^1.8.3",
+    "electron": "1.7.12",
     "electron-ad-blocker": "^0.2.0",
     "electron-builder": "^19.56.2",
     "electron-prebuilt": "^1.4.13",
