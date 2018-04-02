@@ -23,7 +23,7 @@ app.on('ready', function() {
         x: width * 0.6,
         y: height * 0.5,
         icon: path.join(__dirname, 'app/build/icon.png'),
-        alwaysOnTop: true
+        alwaysOnTop: false
     })
 
     youtubeWindow.loadURL('file://' + __dirname + '/app/index.html');
