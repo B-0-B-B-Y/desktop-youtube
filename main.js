@@ -18,10 +18,6 @@ app.on('ready', function() {
         width: width * 0.45,
         frame: false,
         transparent: false,
-        //x: 1400,
-        //y: 760,
-        x: width * 0.6,
-        y: height * 0.5,
         icon: path.join(__dirname, 'app/build/icon.png'),
         alwaysOnTop: false
     })
