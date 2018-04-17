@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "author": "Bob Naydenov <bob.naydenov@hotmail.com>",
   "description": "An elegant desktop version of YouTube",
-  "licence": "GPL-3.0",
+  "license": "GPL-3.0",
   "keywords": [
     "desktop",
     "app",
@@ -44,14 +44,13 @@
     "postinstall": "electron-builder install-app-deps"
   },
   "devDependencies": {
-    "electron": "1.7.12",
+    "electron": "^1.7.12",
     "electron-ad-blocker": "^0.2.0",
     "electron-builder": "^19.56.2",
-    "electron-prebuilt": "^1.4.13",
-    "video-fullscreen": "^1.0.1"
+    "electron-prebuilt": "^1.4.13"
   },
   "dependencies": {
     "electron-ad-blocker": "^0.2.0",
-    "video-fullscreen": "^1.0.1"
+    "electron-updater": "^2.21.4"
   }
 }

@@ -26,6 +26,7 @@ html, body {
   display: flex;
   flex-flow: row nowrap;
   justify-content: flex-end;
+  align-items: center;
   width: 100%;
   margin-right: 10px;
 }
@@ -38,6 +39,9 @@ html, body {
   cursor: pointer;
   -webkit-app-region: no-drag;
 }
+.button-back:hover {
+  opacity: 0.5;
+}
 
 .button-forward {
   height: 36px;
@@ -47,22 +51,41 @@ html, body {
   cursor: pointer;
   -webkit-app-region: no-drag;
 }
-.button-hide {
-  height: 48px;
-  width: 48px;
-  padding: 5px 5px;
-  margin: 6px 0;
+.button-forward:hover {
+  opacity: 0.5;
+}
+
+.button-cast {
+  height: 36px;
+  width: 36px;
+  margin: 6px 12px;
   cursor: pointer;
   -webkit-app-region: no-drag;
 }
+.button-cast:hover {
+  opacity: 0.5;
+}
+
+.button-hide {
+  height: 48px;
+  width: 48px;
+  margin: 6px 12px;
+  cursor: pointer;
+  -webkit-app-region: no-drag;
+}
+.button-hide:hover{
+  opacity: 0.5;
+}
+
 .button-close {workAreaSize
   height: 48px;
   width: 42px;
-  padding: 0px 5px;
-  padding-top: 7px;
-  margin: 6px 0;
+  margin: 6px 12px;
   cursor: pointer;
   -webkit-app-region: no-drag;
+}
+.button-close:hover {
+  opacity: 0.5;
 }
 
 ::-webkit-scrollbar {

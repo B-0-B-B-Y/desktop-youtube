@@ -1,6 +1,7 @@
 const { ipcRenderer } = require('electron');
 var backButton = document.getElementsByClassName('button-back')[0];
 var forwardButton = document.getElementsByClassName('button-forward')[0];
+var castButton = document.getElementsByClassName('button-cast')[0];
 var hideButton = document.getElementsByClassName('button-hide')[0];
 var closeButton = document.getElementsByClassName('button-close')[0];
 const webview = document.querySelector('webview')
@@ -31,6 +32,7 @@ forwardButton.addEventListener('click', function () {
 
 webview.addEventListener('dom-ready', function() {
     webview.insertCSS("body::-webkit-scrollbar { width: 0 !important; }");
+    ipcRenderer.send('can-show', 'You can now show me')
 });
 
 webview.addEventListener('enter-html-full-screen', function () {
@@ -53,3 +55,16 @@ document.onkeydown = function(evt) {
       webview.executeJavaScript("document.getElementsByClassName('ytp-fullscreen-button')[0].click()")
     }
 };
+
+castButton.addEventListener('click', function () {
+  var siteName = webview.getURL()
+  if(siteName.includes('https://www.youtube.com/tv')) {
+    webview.loadURL('https://www.youtube.com/')
+    webview.clearHistory()
+    ipcRenderer.send('tv-mode-off', 'Turn off TV mode')
+  }else {
+    webview.loadURL('https://www.youtube.com/tv#/settings?resume')
+    webview.clearHistory()
+    ipcRenderer.send('tv-mode-on', 'Go into TV mode')
+  }
+})
