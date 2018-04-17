@@ -44,8 +44,8 @@ webview.addEventListener('enter-html-full-screen', function () {
 
 webview.addEventListener('leave-html-full-screen', function () {
   document.getElementById("menu").style.display = "flex"
-  document.getElementById("player").height = "calc(100% - 60px)"
-  document.getElementById("player").width = "100%"
+  document.getElementById("player").style.height = "calc(100% - 60px)"
+  document.getElementById("player").style.width = "100%"
   document.getElementById("player").style.position = "relative"
 })
 
@@ -53,6 +53,11 @@ document.onkeydown = function(evt) {
     evt = evt || window.event;
     if (evt.keyCode == 27) {
       webview.executeJavaScript("document.getElementsByClassName('ytp-fullscreen-button')[0].click()")
+      var siteName = webview.getURL()
+      if(siteName.includes('https://www.youtube.com/tv')) {
+        document.getElementById("menu").style.display = "flex"
+        document.getElementById("player").style.height = "calc(100% - 60px)"
+      }
     }
 };
 
@@ -65,6 +70,8 @@ castButton.addEventListener('click', function () {
   }else {
     webview.loadURL('https://www.youtube.com/tv#/settings?resume')
     webview.clearHistory()
+    document.getElementById("menu").style.display = "none"
+    document.getElementById("player").style.height = "calc(100%)"
     ipcRenderer.send('tv-mode-on', 'Go into TV mode')
   }
 })

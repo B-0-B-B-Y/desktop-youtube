@@ -1,6 +1,6 @@
 {
   "name": "desktop-youtube",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "author": "Bob Naydenov <bob.naydenov@hotmail.com>",
   "description": "An elegant desktop version of YouTube",
   "license": "GPL-3.0",
@@ -26,7 +26,7 @@
     "appId": "desktop.youtube",
     "productName": "YouTube Desktop",
     "mac": {
-      "category": "Entertainment",
+      "category": "public.app-category.entertainment",
       "icon": "app/build/icon.icns"
     },
     "win": {
@@ -34,6 +34,7 @@
       "icon": "app/build/icon.ico"
     },
     "linux": {
+      "category": "Network",
       "icon": "app/build/"
     }
   },
