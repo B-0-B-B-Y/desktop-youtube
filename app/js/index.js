@@ -55,8 +55,15 @@ document.onkeydown = function(evt) {
       webview.executeJavaScript("document.getElementsByClassName('ytp-fullscreen-button')[0].click()")
       var siteName = webview.getURL()
       if(siteName.includes('https://www.youtube.com/tv')) {
-        document.getElementById("menu").style.display = "flex"
-        document.getElementById("player").style.height = "calc(100% - 60px)"
+        var state = $(menu).css("display")
+        if(state == "none") {
+          document.getElementById("menu").style.display = "flex"
+          document.getElementById("player").style.height = "calc(100% - 60px)"
+        } else {
+          document.getElementById("menu").style.display = "none"
+          document.getElementById("player").style.height = "calc(100%)"
+        }
+
       }
     }
 };
