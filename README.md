@@ -6,8 +6,8 @@ I wanted to create a beautiful, slick, desktop widget for YouTube, allowing me t
 
 # How to install
 
-Checkout the releases page here --> https://github.com/B-0-B-B-Y/desktop-youtube/releases, and download the relevant file for your operating system.
+Checkout the releases page <b>[here](https://github.com/B-0-B-B-Y/desktop-youtube/releases)</b>, and download the relevant file for your operating system.
 
 # Issues
 
-If you find that there are any bugs or issues with this software, please do submit it and I will try to correct it as soon as possible. Thank you!
+If you find that there are any bugs or issues with this software, please do submit a ticket and I will try to correct it as soon as possible. Thank you!
