@@ -1,12 +1,11 @@
 const electron = require('electron')
-const {app, BrowserWindow, ipcMain} = require('electron')
-const { blockWindowAds, adBlocker } = require('electron-ad-blocker')
-const {autoUpdater} = require("electron-updater")
+const {app, BrowserWindow, ipcMain, session} = require('electron')
+const { ElectronBlocker } = require('@cliqz/adblocker-electron')
+const { fetch } = require('cross-fetch')
+const { autoUpdater } = require("electron-updater")
 const path = require('path')
-const url = require('url')
-const fs = require('fs')
 
-let youtubeWindow = null;
+let youtubeWindow = null
 
 app.on('ready', function() {
 
@@ -14,32 +13,27 @@ app.on('ready', function() {
 
   const {width, height} = electron.screen.getPrimaryDisplay().size
 
-    youtubeWindow = new BrowserWindow({
-        height: height * 0.50,
-        width: width * 0.5,
-        frame: false,
-        transparent: false,
-        icon: path.join(__dirname, 'app/build/icon.png'),
-        alwaysOnTop: false,
-        show: false
+  youtubeWindow = new BrowserWindow({
+      height: height * 0.50,
+      width: width * 0.5,
+      frame: false,
+      transparent: false,
+      icon: path.join(__dirname, 'app/build/icon.png'),
+      alwaysOnTop: false,
+      show: false
+  })
+
+  youtubeWindow.loadURL('file://' + __dirname + '/app/index.html')
+
+  ElectronBlocker.fromPrebuiltAdsAndTracking(fetch).then((blocker) => {
+    blocker.enableBlockingInSession(session.defaultSession)
+  })
+
+  youtubeWindow.once('ready-to-show', () => {
+    ipcMain.on('can-show', (event, arg) => {
+      youtubeWindow.show()
     })
-
-    youtubeWindow.loadURL('file://' + __dirname + '/app/index.html');
-
-    const options = {
-      verbose: false,
-      logger: console,
-    }
-
-    blockWindowAds(youtubeWindow, options);
-
-    youtubeWindow.once('ready-to-show', () => {
-      ipcMain.on('can-show', (event, arg) => {
-        youtubeWindow.show()
-      })
-    })
-
-
+  })
 })
 
 ipcMain.on('button-press-hide', (event, arg) => {
