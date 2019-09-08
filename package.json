@@ -45,13 +45,13 @@
     "postinstall": "electron-builder install-app-deps"
   },
   "devDependencies": {
-    "electron": "^1.7.12",
-    "electron-ad-blocker": "^0.2.0",
+    "electron": "^6.0.1",
     "electron-builder": "^19.56.2",
     "electron-prebuilt": "^1.4.13"
   },
   "dependencies": {
-    "electron-ad-blocker": "^0.2.0",
+    "@cliqz/adblocker-electron": "^1.0.2",
+    "cross-fetch": "^3.0.4",
     "electron-updater": "^2.21.4"
   }
 }
