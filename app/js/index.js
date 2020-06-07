@@ -1,4 +1,4 @@
-const { ipcRenderer } = require('electron');
+import { ipcRenderer } from 'electron'
 var backButton = document.getElementsByClassName('button-back')[0];
 var forwardButton = document.getElementsByClassName('button-forward')[0];
 var castButton = document.getElementsByClassName('button-cast')[0];
@@ -55,7 +55,9 @@ document.onkeydown = function(evt) {
       webview.executeJavaScript("document.getElementsByClassName('ytp-fullscreen-button')[0].click()")
       var siteName = webview.getURL()
       if(siteName.includes('https://www.youtube.com/tv')) {
-        var state = $(menu).css("display")
+        const cssMenu = window.getComputedStyle('menu')
+        const state = cssMenu.getPropertyValue('display')
+
         if(state == "none") {
           document.getElementById("menu").style.display = "flex"
           document.getElementById("player").style.height = "calc(100% - 60px)"
