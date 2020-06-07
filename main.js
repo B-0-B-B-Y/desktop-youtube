@@ -1,14 +1,14 @@
 const electron = require('electron')
 const {app, BrowserWindow, ipcMain, session} = require('electron')
-const { ElectronBlocker } = require('@cliqz/adblocker-electron')
-const { fetch } = require('cross-fetch')
+const { ElectronBlocker, fullLists } = require('@cliqz/adblocker-electron')
+const fetch = require('node-fetch')
 const { autoUpdater } = require("electron-updater")
+import { promises as fs } from 'fs'
 const path = require('path')
 
 let youtubeWindow = null
 
-app.on('ready', function() {
-
+const createWindow = async () => {
   autoUpdater.checkForUpdatesAndNotify()
 
   const {width, height} = electron.screen.getPrimaryDisplay().size
@@ -20,20 +20,39 @@ app.on('ready', function() {
       transparent: false,
       icon: path.join(__dirname, 'app/build/icon.png'),
       alwaysOnTop: false,
-      show: false
+      show: true,
+      webPreferences: {
+        webviewTag: true
+      }
   })
+
+  const blocker = await ElectronBlocker.fromLists(fetch, fullLists, {
+    enableCompression: true,
+  }, {
+    path: 'engine.bin',
+    read: fs.readFile,
+    write: fs.writeFile
+  })
+
+  blocker.enableBlockingInSession(session.defaultSession)
 
   youtubeWindow.loadURL('file://' + __dirname + '/app/index.html')
-
-  ElectronBlocker.fromPrebuiltAdsAndTracking(fetch).then((blocker) => {
-    blocker.enableBlockingInSession(session.defaultSession)
-  })
 
   youtubeWindow.once('ready-to-show', () => {
     ipcMain.on('can-show', (event, arg) => {
       youtubeWindow.show()
     })
   })
+}
+
+app.allowRendererProcessReuse = false
+
+app.on('ready', createWindow)
+
+app.on('activate', () => {
+  if (youtubeWindow === null) {
+    createWindow()
+  }
 })
 
 ipcMain.on('button-press-hide', (event, arg) => {

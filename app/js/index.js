@@ -1,4 +1,4 @@
-const { ipcRenderer } = require('electron');
+const { ipcRenderer } = require('electron')
 var backButton = document.getElementsByClassName('button-back')[0];
 var forwardButton = document.getElementsByClassName('button-forward')[0];
 var castButton = document.getElementsByClassName('button-cast')[0];
