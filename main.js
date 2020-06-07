@@ -1,17 +1,16 @@
-const electron = require('electron')
-const {app, BrowserWindow, ipcMain, session} = require('electron')
-const { ElectronBlocker, fullLists } = require('@cliqz/adblocker-electron')
-const fetch = require('node-fetch')
-const { autoUpdater } = require("electron-updater")
+import { app, BrowserWindow, ipcMain, session, screen } from 'electron'
+import { ElectronBlocker, fullLists } from '@cliqz/adblocker-electron'
+import fetch from 'node-fetch'
+import { autoUpdater } from 'electron-updater'
 import { promises as fs } from 'fs'
-const path = require('path')
+import path from 'path'
 
 let youtubeWindow = null
 
 const createWindow = async () => {
   autoUpdater.checkForUpdatesAndNotify()
 
-  const {width, height} = electron.screen.getPrimaryDisplay().size
+  const {width, height} = screen.getPrimaryDisplay().size
 
   youtubeWindow = new BrowserWindow({
       height: height * 0.50,
@@ -22,7 +21,8 @@ const createWindow = async () => {
       alwaysOnTop: false,
       show: true,
       webPreferences: {
-        webviewTag: true
+        webviewTag: true,
+        nodeIntegration: true
       }
   })
 
@@ -48,12 +48,6 @@ const createWindow = async () => {
 app.allowRendererProcessReuse = false
 
 app.on('ready', createWindow)
-
-app.on('activate', () => {
-  if (youtubeWindow === null) {
-    createWindow()
-  }
-})
 
 ipcMain.on('button-press-hide', (event, arg) => {
   youtubeWindow.minimize()
