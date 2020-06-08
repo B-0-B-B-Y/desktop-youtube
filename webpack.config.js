@@ -5,6 +5,7 @@ const { spawn } = require('child_process')
 const defaultInclude = path.resolve(__dirname, 'src')
 
 module.exports = {
+  entry: './',
   module: {
     rules: [
       {

@@ -1,15 +1,13 @@
 const { app, BrowserWindow, ipcMain, session, screen } = require('electron')
 const { ElectronBlocker, fullLists } = require('@cliqz/adblocker-electron')
 const fetch = require('node-fetch')
-const { autoUpdater } = require('electron-updater')
 const fs = require('fs').promises
 const path = require('path')
+const url = require('url')
 
 let youtubeWindow = null
 
 const createWindow = async () => {
-  autoUpdater.checkForUpdatesAndNotify()
-
   const {width, height} = screen.getPrimaryDisplay().size
 
   youtubeWindow = new BrowserWindow({
@@ -36,7 +34,13 @@ const createWindow = async () => {
 
   blocker.enableBlockingInSession(session.defaultSession)
 
-  youtubeWindow.loadURL('file://' + __dirname + '/src/index.html')
+  // youtubeWindow.loadURL('file://' + __dirname + '/src/index.html')
+  youtubeWindow.loadURL(url.format({
+    protocol: 'http',
+    host: 'localhost:8080',
+    pathname: 'index.html',
+    slashes: true
+  }))
 
   youtubeWindow.once('ready-to-show', () => {
     ipcMain.on('can-show', (event, arg) => {
