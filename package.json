@@ -1,6 +1,6 @@
 {
   "name": "desktop-youtube",
-  "version": "1.0.3",
+  "version": "1.0.4",
   "author": "Bob Naydenov <bob.naydenov@hotmail.com>",
   "description": "An elegant desktop version of YouTube",
   "license": "GPL-3.0",
@@ -17,6 +17,7 @@
     "comments",
     "share"
   ],
+  "homepage": "./",
   "main": "./main.js",
   "repository": {
     "type": "git",
@@ -39,14 +40,15 @@
     }
   },
   "scripts": {
-    "start": "electron .",
-    "pack": "electron-builder -mlw",
-    "dist-win": "electron-builder --win",
-    "postinstall": "electron-builder install-app-deps"
+    "start": "webpack-dev-server --hot --host 0.0.0.0 --config=./webpack.config.js --mode development",
+    "build": "webpack --config webpack.config.js --mode production",
+    "package": "yarn build",
+    "postpackage": "electron-packager ./ --out=./builds",
+    "dist-win": "electron-builder --win"
   },
   "devDependencies": {
     "@babel/core": "^7.10.2",
-    "@babel/preset-env": "^7.10.2",
+    "@babel/preset-react": "^7.10.1",
     "babel-loader": "^8.1.0",
     "babili-webpack-plugin": "^0.1.2",
     "css-loader": "^3.5.3",
@@ -63,6 +65,8 @@
     "@cliqz/adblocker-electron": "^1.15.1",
     "electron": "^9.0.2",
     "electron-updater": "^2.21.4",
-    "node-fetch": "^2.6.0"
+    "node-fetch": "^2.6.0",
+    "react": "^16.13.1",
+    "react-dom": "^16.13.1"
   }
 }
