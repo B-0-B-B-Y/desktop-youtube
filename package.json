@@ -18,7 +18,7 @@
     "share"
   ],
   "homepage": "./",
-  "main": "./main.js",
+  "main": "main.js",
   "repository": {
     "type": "git",
     "url": "https://github.com/B-0-B-B-Y/desktop-youtube.git"

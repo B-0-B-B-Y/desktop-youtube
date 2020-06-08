@@ -5,6 +5,8 @@ const fs = require('fs').promises
 const path = require('path')
 const url = require('url')
 
+console.log(app)
+
 let youtubeWindow = null
 
 const createWindow = async () => {
