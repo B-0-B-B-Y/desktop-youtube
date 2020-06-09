@@ -4,8 +4,7 @@ const fetch = require('node-fetch')
 const fs = require('fs').promises
 const path = require('path')
 const url = require('url')
-
-console.log(app)
+const userAgent = 'Mozilla/5.0 (SMART-TV; Linux; Tizen 5.0) AppleWebKit/537.36 (KHTML, like Gecko) SamsungBrowser/2.2 Chrome/63.0.3239.84 TV Safari/537.36'
 
 let youtubeWindow = null
 
@@ -36,7 +35,12 @@ const createWindow = async () => {
 
   blocker.enableBlockingInSession(session.defaultSession)
 
-  // youtubeWindow.loadURL('file://' + __dirname + '/src/index.html')
+  // Necessary to have YouTube cast still work
+  session.defaultSession.webRequest.onBeforeSendHeaders((details, callback) => {
+    details.requestHeaders['User-Agent'] = userAgent
+    callback({ cancel: false, requestHeaders: details.requestHeaders })
+  })
+
   youtubeWindow.loadURL(url.format({
     protocol: 'http',
     host: 'localhost:8080',
