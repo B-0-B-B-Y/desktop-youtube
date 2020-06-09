@@ -1,15 +1,20 @@
-// WIP - Add insertCSS and other event listener functions here and import them into App.js
+export const insertCSS = (webview) => {
+  webview.insertCSS('body::-webkit-scrollbar { width: 0 !important }')
+}
 
-webview.addEventListener('enter-html-full-screen', function () {
-  document.getElementById('menu').style.display = 'none'
-  document.getElementById('player').style.height = '100%'
-  document.getElementById('player').style.width = '100%'
-  document.getElementById('player').style.position = 'absolute'
-})
+export const handleCursor = (mouseEvent, menu) => {
+  if (mouseEvent.clientY <= 60 && menu.style.display === 'none') {
+    menu.style.display = 'flex'
+    console.log('Match: ', mouseEvent.clientY)
+  } else if (mouseEvent.clientY > 60 && menu.style.display === 'flex') {
+    menu.style.display = 'none'
+    console.log('No match: ', mouseEvent.clientY)
+  }
 
-webview.addEventListener('leave-html-full-screen', function () {
-  document.getElementById('menu').style.display = 'flex'
-  document.getElementById('player').style.height = 'calc(100% - 60px)'
-  document.getElementById('player').style.width = '100%'
-  document.getElementById('player').style.position = 'relative'
-})
+  console.log('Mouse is currently at: ', mouseEvent.clientY)
+}
+
+export default {
+  insertCSS,
+  handleCursor
+}

@@ -2,38 +2,41 @@ import React, { useLayoutEffect, useState } from 'react'
 import { ipcRenderer } from 'electron'
 import '../assets/css/index.css'
 import '../helpers/buttons'
+import { insertCSS, handleCursor } from '../helpers/functions'
 
 const App = () => {
   const [siteName, setSiteName] = useState('https://www.youtube.com')
   const [isCasting, setIsCasting] = useState(false)
   const [webview, setWebview] = useState(null)
+  const [menu, setMenu] = useState(null)
+  const [player, setPlayer] = useState(null)
 
   useLayoutEffect(() => {
     setWebview(document.querySelector('webview'))
+    setMenu(document.querySelector('#menu'))
+    setPlayer(document.querySelector('#player'))
   }, [])
 
   useLayoutEffect(() => {
     if (webview) {
-      const insertCSS = () => {
-        webview.insertCSS('body::-webkit-scrollbar { width: 0 !important }')
-      }
-
-      webview.addEventListener('dom-ready', insertCSS)
+      webview.addEventListener('dom-ready', insertCSS.bind(this, webview))
+      webview.addEventListener('mousemove', e => handleCursor(e, menu))
 
       return () => {
         webview.removeEventListener('dom-ready', insertCSS)
+        webview.removeEventListener('mousemove', handleCursor)
       }
     }
-  }, [webview])
+  }, [webview, menu])
 
   useLayoutEffect(() => {
-    if (isCasting) {
-      document.querySelector('#player').style.height = 'calc(100%)'
+    if (isCasting && player) {
+      player.style.height = '100%'
       ipcRenderer.send('tv-mode-on', 'Go into TV mode')
     } else {
       ipcRenderer.send('tv-mode-off', 'Turn off TV mode')
     }
-  }, [isCasting])
+  }, [isCasting, player])
 
   const handleBackClick = () => {
     webview.goBack()
@@ -49,11 +52,13 @@ const App = () => {
     if (siteName.includes(url)) {
       url = 'https://www.youtube.com/'
 
+      menu.style.display = 'flex'
       webview.loadURL(url)
       webview.clearHistory()
       setSiteName(url)
       setIsCasting(false)
     } else {
+      menu.style.display = 'none'
       webview.loadURL(url)
       webview.clearHistory()
       setSiteName(url)
