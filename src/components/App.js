@@ -2,7 +2,7 @@ import React, { useLayoutEffect, useState } from 'react'
 import { ipcRenderer } from 'electron'
 import '../assets/css/index.css'
 import '../helpers/buttons'
-import { insertCSS, handleCursor } from '../helpers/functions'
+import { insertCSS, handleEnterFullscreen, handleLeaveFullscreen } from '../helpers/functions'
 
 const App = () => {
   const [siteName, setSiteName] = useState('https://www.youtube.com')
@@ -20,23 +20,34 @@ const App = () => {
   useLayoutEffect(() => {
     if (webview) {
       webview.addEventListener('dom-ready', insertCSS.bind(this, webview))
-      webview.addEventListener('mousemove', e => handleCursor(e, menu))
 
       return () => {
         webview.removeEventListener('dom-ready', insertCSS)
-        webview.removeEventListener('mousemove', handleCursor)
       }
     }
-  }, [webview, menu])
+  }, [webview])
 
   useLayoutEffect(() => {
     if (isCasting && player) {
       player.style.height = '100%'
       ipcRenderer.send('tv-mode-on', 'Go into TV mode')
-    } else {
+    } else if (player) {
+      player.style.height = 'calc(100% - 60px)'
       ipcRenderer.send('tv-mode-off', 'Turn off TV mode')
     }
   }, [isCasting, player])
+
+  useLayoutEffect(() => {
+    if (menu && player) {
+      webview.addEventListener('enter-html-full-screen', handleEnterFullscreen.bind(this, menu, player))
+      webview.addEventListener('leave-html-full-screen', handleLeaveFullscreen.bind(this, menu, player))
+
+      return () => {
+        webview.removeEventListener('enter-html-full-screen', handleEnterFullscreen)
+        webview.removeEventListener('leave-html-full-screen', handleLeaveFullscreen)
+      }
+    }
+  }, [menu, player])
 
   const handleBackClick = () => {
     webview.goBack()
@@ -50,7 +61,7 @@ const App = () => {
     let url = 'https://www.youtube.com/tv'
 
     if (siteName.includes(url)) {
-      url = 'https://www.youtube.com/'
+      url = 'https://www.youtube.com'
 
       menu.style.display = 'flex'
       webview.loadURL(url)
