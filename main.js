@@ -1,15 +1,14 @@
-import { app, BrowserWindow, ipcMain, session, screen } from 'electron'
-import { ElectronBlocker, fullLists } from '@cliqz/adblocker-electron'
-import fetch from 'node-fetch'
-import { autoUpdater } from 'electron-updater'
-import { promises as fs } from 'fs'
-import path from 'path'
+const { app, BrowserWindow, ipcMain, session, screen } = require('electron')
+const { ElectronBlocker, fullLists } = require('@cliqz/adblocker-electron')
+const fetch = require('node-fetch')
+const fs = require('fs').promises
+const path = require('path')
+const url = require('url')
+const userAgent = 'Mozilla/5.0 (SMART-TV; Linux; Tizen 5.0) AppleWebKit/537.36 (KHTML, like Gecko) SamsungBrowser/2.2 Chrome/63.0.3239.84 TV Safari/537.36'
 
 let youtubeWindow = null
 
 const createWindow = async () => {
-  autoUpdater.checkForUpdatesAndNotify()
-
   const {width, height} = screen.getPrimaryDisplay().size
 
   youtubeWindow = new BrowserWindow({
@@ -17,7 +16,7 @@ const createWindow = async () => {
       width: width * 0.5,
       frame: false,
       transparent: false,
-      icon: path.join(__dirname, 'app/build/icon.png'),
+      icon: path.join(__dirname, 'src/build/icon.png'),
       alwaysOnTop: false,
       show: true,
       webPreferences: {
@@ -36,7 +35,18 @@ const createWindow = async () => {
 
   blocker.enableBlockingInSession(session.defaultSession)
 
-  youtubeWindow.loadURL('file://' + __dirname + '/app/index.html')
+  // Necessary to have YouTube cast still work
+  session.defaultSession.webRequest.onBeforeSendHeaders((details, callback) => {
+    details.requestHeaders['User-Agent'] = userAgent
+    callback({ cancel: false, requestHeaders: details.requestHeaders })
+  })
+
+  youtubeWindow.loadURL(url.format({
+    protocol: 'http',
+    host: 'localhost:8080',
+    pathname: 'index.html',
+    slashes: true
+  }))
 
   youtubeWindow.once('ready-to-show', () => {
     ipcMain.on('can-show', (event, arg) => {
