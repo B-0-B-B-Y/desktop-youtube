@@ -64,7 +64,7 @@
   },
   "dependencies": {
     "@cliqz/adblocker-electron": "^1.15.1",
-    "electron": "^9.0.2",
+    "electron": "^9.4.0",
     "electron-updater": "^2.21.4",
     "node-fetch": "^2.6.0",
     "react": "^16.13.1",
