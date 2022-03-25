@@ -460,15 +460,10 @@
   resolved "https://registry.yarnpkg.com/@types/minimatch/-/minimatch-3.0.3.tgz#3dca0e3f33b200fc7d1139c0cd96c1268cadfd9d"
   integrity sha512-tHq6qdbT9U1IRSGf14CL0pUlULksvY9OZ+5eEgl1N7t+OA3tGvNpxJCzuKQlsNgCVwbAs670L1vcVQi8j9HjnA==
 
-"@types/node@*":
-  version "14.0.11"
-  resolved "https://registry.yarnpkg.com/@types/node/-/node-14.0.11.tgz#61d4886e2424da73b7b25547f59fdcb534c165a3"
-  integrity sha512-lCvvI24L21ZVeIiyIUHZ5Oflv1hhHQ5E1S25IRlKIXaRkVgmXpJMI3wUJkmym2bTbCe+WoIibQnMVAU3FguaOg==
-
-"@types/node@^12.0.12":
-  version "12.12.44"
-  resolved "https://registry.yarnpkg.com/@types/node/-/node-12.12.44.tgz#0d400a1453adcb359b133acceae4dd8bb0e0a159"
-  integrity sha512-jM6QVv0Sm5d3nW+nUD5jSzPcO6oPqboitSNcwgBay9hifVq/Rauq1PYnROnsmuw45JMBiTnsPAno0bKu2e2xrg==
+"@types/node@*", "@types/node@^14.6.2":
+  version "14.18.12"
+  resolved "https://registry.yarnpkg.com/@types/node/-/node-14.18.12.tgz#0d4557fd3b94497d793efd4e7d92df2f83b4ef24"
+  integrity sha512-q4jlIR71hUpWTnGhXWcakgkZeHa3CCjcQcnuzU8M891BAWA2jHiziiWEPEkdS5pFsz7H9HJiy8BrK7tBRNrY7A==
 
 "@types/source-list-map@*":
   version "0.1.2"
@@ -2483,13 +2478,13 @@ electron-updater@^2.21.4:
     semver "^5.5.0"
     source-map-support "^0.5.6"
 
-electron@^11.5.0:
-  version "11.5.0"
-  resolved "https://registry.yarnpkg.com/electron/-/electron-11.5.0.tgz#f1650543b9d8f2047d3807755bdb120153ed210f"
-  integrity sha512-WjNDd6lGpxyiNjE3LhnFCAk/D9GIj1rU3GSDealVShhkkkPR3Vh4q8ErXGDl1OAO/faomVa10KoFPUN/pLbNxg==
+electron@^13.6.6:
+  version "13.6.6"
+  resolved "https://registry.yarnpkg.com/electron/-/electron-13.6.6.tgz#ebd4754b2b55d54a2e8e9cdc3d0a2bb6b7053827"
+  integrity sha512-TP2Bl1nTxaH1yRmlYiF7imzvKE/NASE0cl6wOYA3AaP/UrBGc4L3NwJfn5Z55o+1t4TH8vCRxENufESyb32HhA==
   dependencies:
     "@electron/get" "^1.0.1"
-    "@types/node" "^12.0.12"
+    "@types/node" "^14.6.2"
     extract-zip "^1.0.3"
 
 elliptic@^6.0.0, elliptic@^6.5.2:
